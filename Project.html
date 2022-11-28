@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://kit.fontawesome.com/4c448abc25.js" ></script>
+<meta charset="UTF-8" />
+<meta name="viewport " content="width=device-widht, intial-scale=1.0"/>
+<title>project</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.0/dist/email.min.js"></script>
+<script type="text/javascript">
+(function () {
+
+emailjs.init("gfS0xsW0jB7TSwjVP");
+})();
+</script>
+<script src="index.js"></script>
+</head>
+<body>
+     
+ <div id="preloader"> </div>  
+<header>
+    <nav class="navbar" style="position:fixed">
+<div class="container">
+<a href="https://dubrovskih.ru/" class="navbar-brand">Mailling <i class="fa-solid fa-feather"></i></a>
+<div class="navbar-wrap" >
+    <ul class="navbar-menu" id="nav"  >
+        <li id="headIcon"><a href="#"><i class="fa-solid fa-users-rectangle"></i> </a></li>
+        <li id="headIcon"><a href="#"><i class="fa-solid fa-paper-plane"></i> </a></li>
+        <li id="headIcon"><a href="#"><i class="fa-solid fa-briefcase"></i></a></li>
+        <li id="headIcon"><a href="#"><i class="fa-regular fa-circle-user"></i> </a></li>
+        <li id="headIcon"><a href="#"><i class="fa-solid fa-phone"></i> </a> </li>
+    </ul>
+</div>
+</div>
+</nav>
+</header>
+<div class="hero">
+<form >
+<div class="row">
+<div class="input-group">
+    <input type="text" id="name" required>
+    <label for="name"><i class="fa-solid fa-user"></i> имя отправителя</label>
+</div>
+<div class="input-group">
+    <input type="text" id="number" required >
+    <label for="number"><i class="fa-solid fa-users"></i> тип мероприятия</label>
+</div>
+</div>
+<div class="input-group">
+    <input class="email" type="text" id="email" required>
+    <label for="email"><i class="fa-solid fa-list"></i> категории</label>
+</div>
+<div class="input-group">
+    <textarea id="message" rows="8" required></textarea>
+    <label for="message"><i class="fas fa-comments"></i> сообщения</label>
+</div>
+<button type="submit"><i class="fa-solid fa-paper-plane"></i> отправить</button>
+</form>
+</div>
+        <footer class="footer">
+                <div class="footer-left">
+                        <h3>Mailling<i class="fa-solid fa-feather"></i></h3>
+                        <div class="photo">
+                             <img src="rasm12.jpg" alt="">
+                         </div>
+                         <p class="footer-copyright">Московский политехнический университет 2022</p>
+                </div>
+                <div class="footer-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p><span>Россия, Москва</span></p>
+                    <div>
+                        <i class="fa-solid fa-phone"></i>
+                        <p>535353646</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-envelope"></i>
+                        <p><a class="email12"  href="#">support@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p class="footer-about">
+                            <span>о нас </span>
+                            Московский Политех-один из величайших университетов мира.
+                    </p>
+                    <div class="footer-media">
+                                <a href="#"><i class="fa-brands fa-telegram"></i> </a>
+                                <a href="#"><i class="fa-brands fa-vk"></i> </a>
+                                <a href="#"><i class="fa-solid fa-envelope"></i> </a>
+                    </div>
+                </div>
+        </footer>
+
+        <script> 
+            var loader =document.getElementById("preloader");
+                    window.addEventListener("load", function(){
+                            loader.style.display ="none";
+                    })
+        </script>
+</body>
+</html>
