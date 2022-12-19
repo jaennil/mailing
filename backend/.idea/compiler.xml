@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="complete" />
         <module name="uploading-files-complete" />
+        <module name="backend" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="backend" options="-parameters" />
       <module name="complete" options="-parameters" />
       <module name="uploading-files-complete" options="-parameters" />
     </option>

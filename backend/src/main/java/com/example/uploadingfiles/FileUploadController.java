@@ -156,7 +156,7 @@ public class FileUploadController {
 			message.setSubject(emailSubject);
 
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
-			mimeBodyPart.setContent("Здравствуйте, " + ChiefName + ", " + emailText, "text/html; charset=utf-8");
+			mimeBodyPart.setContent("Здравствуйте, " + EmailAndChief[1] + ", " + emailText, "text/html; charset=utf-8");
 
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(mimeBodyPart);
