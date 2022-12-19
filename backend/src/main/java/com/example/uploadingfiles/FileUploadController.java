@@ -69,13 +69,10 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam(required = false, name="emailText") String emailText, @RequestParam(required = false, name="emailSubject") String emailSubject,
-			RedirectAttributes redirectAttributes) throws MessagingException, IOException {
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam(required = false, name="emailText") String emailText, @RequestParam(required = false, name="emailSubject") String emailSubject) throws MessagingException, IOException {
 		System.out.println(emailText);
 		System.out.println("get file");
 		storageService.store(file);
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
 
 		// send email
 		Properties prop = new Properties();
