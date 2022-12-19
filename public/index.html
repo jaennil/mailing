@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://kit.fontawesome.com/4c448abc25.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport " content="width=device-widht, intial-scale=1.0" />
+    <title>mailing</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="preloader"></div>
+    <header>
+      <nav class="navbar" style="position: fixed">
+        <div class="container">
+          <a href="https://dubrovskih.ru/" class="navbar-brand"
+            >Mailing <i class="fa-solid fa-feather"></i
+          ></a>
+          <div class="navbar-wrap">
+            <ul class="navbar-menu" id="nav">
+              <li id="headIcon">
+                <a href="https://mospolytech.ru/"
+                  ><i class="fa-solid fa-users-rectangle"></i>
+                </a>
+              </li>
+              <li id="headIcon">
+                <a href="https://t.me/mospolytech"
+                  ><i class="fa-solid fa-paper-plane"></i>
+                </a>
+              </li>
+              <li id="headIcon">
+                <a href="https://fit.mospolytech.ru/"
+                  ><i class="fa-regular fa-circle-user"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="hero">
+      <form
+        id="formElem"
+        method="POST"
+        enctype="multipart/form-data"
+        action="http://localhost:8080/"
+      >
+        <div class="row">
+          <div class="input-group">
+            <input type="text" id="subject" name="emailSubject" required />
+            <label for="subject"
+              ><i class="fa-solid fa-users"></i>Тема письма</label
+            >
+          </div>
+        </div>
+        <div class="input-group">
+          <select id="category" name="category" required>
+            <option value="category">Категория</option>
+            <option value="art">Художественная</option>
+            <option value="music">Музыкальная</option>
+            <option value="phys-math">Физико-математическая</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <input type="file" class="customfile" />
+          <label for="files">Select file</label>
+        </div>
+        <div class="input-group">
+          <textarea
+            id="emailText"
+            name="emailText"
+            rows="8"
+            required
+          ></textarea>
+          <label for="emailText"
+            ><i class="fas fa-comments"></i> Сообщение</label
+          >
+        </div>
+        <button type="submit" id="submit-button">
+          <i class="fa-solid fa-paper-plane"></i> Отправить
+        </button>
+      </form>
+    </div>
+    <footer class="footer">
+      <div class="footer-left">
+        <div class="photo">
+          <img src="logo.jpg" alt="" />
+        </div>
+        <p class="footer-copyright">
+          Московский политехнический университет 2022
+        </p>
+      </div>
+      <div class="footer-center">
+        <i class="fa-solid fa-location-dot"></i>
+        <p><span>Россия, Москва</span></p>
+        <div>
+          <i class="fa-solid fa-phone"></i>
+          <p>+7 (495) 223-05-23</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-envelope"></i>
+          <p>
+            <a class="email12" href="https://mospolytech.ru/">mospolytech.ru</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-right">
+        <p class="footer-about">
+          <span>О нас </span>
+          Московский Политех-один из величайших университетов мира.
+        </p>
+        <div class="footer-media">
+          <a href="https://t.me/mospolytech"
+            ><i class="fa-brands fa-telegram"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UCJMY2ilUHti99R6ii2PIIYA"
+            ><i class="fa-brands fa-youtube"></i>
+          </a>
+          <a href="https://tiktok.com/@mospolytech"
+            ><i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var loader = document.getElementById("preloader");
+      window.addEventListener("load", function () {
+        loader.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
