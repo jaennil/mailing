@@ -69,8 +69,9 @@ public class FileUploadController {
 	}
 
 	@PostMapping("/")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam(required = false, name="emailText") String emailText, @RequestParam(required = false, name="emailSubject") String emailSubject) throws MessagingException, IOException {
+	public String handleFileUpload(@RequestParam("file") MultipartFile file, @RequestParam(required = false, name="emailText") String emailText, @RequestParam(required = false, name="emailSubject") String emailSubject, @RequestParam(required = false, name="category") String category) throws MessagingException, IOException {
 		System.out.println(emailText);
+		System.out.println(category);
 		System.out.println("get file");
 		storageService.store(file);
 
@@ -90,9 +91,11 @@ public class FileUploadController {
 		Message message = new MimeMessage(session);
 		boolean flagEmail = false;
 		boolean flagChiefName = false;
+		boolean flagCategory = false;
 		String Email = "";
 		String ChiefName = "";
-		String datasetPath = ".\\datasets\\testdataset.xlsx";
+		String Category = "";
+		String datasetPath = "/home/johnil/mailing/backend/datasets/testdataset.xlsx";
 		FileInputStream dataset = new FileInputStream(new File(datasetPath));
 
 		Workbook workbook = new XSSFWorkbook(dataset);
@@ -127,46 +130,57 @@ public class FileUploadController {
 							ChiefName = cell.getRichStringCellValue().getString().substring(matcherChiefName.start(), matcherChiefName.end()).substring(10);
 							flagChiefName = true;
 						}
-						if (flagEmail && flagChiefName)
-							data.put(i,Email + ":" + ChiefName);
+						Pattern patternCategory = Pattern.compile("art|music|phys-math");
+						Matcher matcherCategory = patternCategory.matcher(cell.getRichStringCellValue().getString());
+
+						if (matcherCategory.find())
+						{
+							Category = cell.getRichStringCellValue().getString();
+							flagCategory = true;
+						}
+						if (flagEmail && flagChiefName && flagCategory)
+							data.put(i,Email + ":" + ChiefName + ":" + Category);
 						break;
 					default:;
 				}
 			}
 			i++;
+			flagCategory = false;
 			flagEmail = false;
 			flagChiefName = false;
 		}
 
 		ArrayList<String> values = new ArrayList<>(data.values());
-		String[] EmailAndChief;
+		String[] EmailAndChiefAndCategory;
 
 		message.setFrom(new InternetAddress("n.e.dubrovskih@mail.ru"));
 
 		for (String Element:values)
 		{
 			Element = Element.replaceAll("\n","");
-			EmailAndChief = Element.split(":");
+			EmailAndChiefAndCategory = Element.split(":");
 
-			message.setRecipients(
-					Message.RecipientType.TO, InternetAddress.parse(EmailAndChief[0]));
-			message.setSubject(emailSubject);
+			if (EmailAndChiefAndCategory[2].equals(category)) {
+				message.setRecipients(
+						Message.RecipientType.TO, InternetAddress.parse(EmailAndChiefAndCategory[0]));
+				message.setSubject(emailSubject);
 
-			MimeBodyPart mimeBodyPart = new MimeBodyPart();
-			mimeBodyPart.setContent("Здравствуйте, " + EmailAndChief[1] + ", " + emailText, "text/html; charset=utf-8");
+				MimeBodyPart mimeBodyPart = new MimeBodyPart();
+				mimeBodyPart.setContent("Здравствуйте, " + EmailAndChiefAndCategory[1] + ", " + emailText, "text/html; charset=utf-8");
 
-			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(mimeBodyPart);
+				Multipart multipart = new MimeMultipart();
+				multipart.addBodyPart(mimeBodyPart);
 
-			message.setContent(multipart);
-			MimeBodyPart attachmentBodyPart = new MimeBodyPart();
-			attachmentBodyPart.attachFile(new File(".\\upload-dir\\" + file.getOriginalFilename()));
-			multipart.addBodyPart(attachmentBodyPart);
-			Transport.send(message);
-			System.out.println("message sent");
+				message.setContent(multipart);
+				MimeBodyPart attachmentBodyPart = new MimeBodyPart();
+				attachmentBodyPart.attachFile(new File("/home/johnil/mailing/backend/upload-dir/" + file.getOriginalFilename()));
+				multipart.addBodyPart(attachmentBodyPart);
+				Transport.send(message);
+				System.out.println("message sent");
+			}
 		}
 
-		File f = new File(".\\upload-dir\\" + file.getOriginalFilename());
+		File f = new File("/home/johnil/mailing/backend/upload-dir/" + file.getOriginalFilename());
 		if (f.delete()) {
 			System.out.println(f.getName() + " deleted");
 		} else {
